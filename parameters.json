@@ -56,7 +56,7 @@
             "value": "AutomaticByOS"
         },
         "enableHotpatching": {
-            "value": false
+            "value": false.
         }
     }
 }
