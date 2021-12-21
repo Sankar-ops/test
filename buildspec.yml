@@ -4,15 +4,17 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - aws --version
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email )
+      - REPOSITORY_URI=791523178199.dkr.ecr.us-east-1.amazonaws.com/sankar
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - docker build -t sankar:latest .
-      - docker tag sankar:latest 791523178199.dkr.ecr.us-east-1.amazonaws.com/sankar:latest  
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 791523178199.dkr.ecr.us-east-1.amazonaws.com/sankar:latest
+      - docker push $REPOSITORY_URI:latest
