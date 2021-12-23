@@ -1,7 +1,2 @@
-FROM ubuntu:latest
-
-RUN yum -y install httpd
-
-COPY index.html /var/www/html/
-
-EXPOSE 80
+FROM nginx
+COPY index.html /usr/share/nginx/html
