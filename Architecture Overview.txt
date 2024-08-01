@@ -1,0 +1,45 @@
+https://learn.microsoft.com/en-us/azure/architecture/example-scenario/startups/core-startup-stack
+
+Application Objective:
+   Delivering full-stack applications via Azure resources and application build and hosting via Github actions.
+
+
+Application deployment infrastructure resources:
+
+* Azure App Service: This is the place where my Angular frontend and Ruby on Rails backend-based applications are deployed with docker image.
+
+* Azure Database for PostgreSQL: My application data will be stored in this RDBMS.
+
+* Azure Network: The Azure app service and PostgreSQL will be connected to different subnets, but they can communicate via the same VNET.
+
+* Blob Storage: The front-end application part of assets will be uploaded here.
+
+* Azure CDN: Azure storage account will be mapped to Azure CDN, which can deliver your static assets via cache. CDN URL links can be defined inside HTML pages. 
+ 
+
+Use Case :
+  When I browse my application through a URL at the same time, my application's static contents will be loaded via CDN. 
+and it will move the load away from the app server.
+
+
+Application Build  :
+
+* create Docker file
+* Build Docker image 
+* push to acr via  Azure Workload Identity Federation ( passwordless Authentication )
+* Deploy Docker image to Azure App service
+* If required, pass below environment variables and connection strings to Azure App service
+
+   > DB conntion string ( retrive value from Azure keyvault or Managed identity)
+   > ACR credentials (retrive values from Azure keyvault)
+   > Stoareg account connection string (retrive from Azure keyvaultor Managed identity)
+
+This can be Achieved via Github actions
+
+
+
+infrastructure Build :
+
+   i have provisoned Above Azure resources with private communication method except Azure storage account and Azure CDN
+ This was provisoned via Github Actions Pipeline.
+  
