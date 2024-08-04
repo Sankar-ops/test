@@ -23,11 +23,6 @@ jobs:
 
     - name: Zip build output
       run: |
-        zip -r build-output.zip ./dist
+        ls -l ./dist
 
-    - name: Upload build output
-      uses: actions/upload-artifact@v3
-      with:
-        name: build-output
-        path: build-output.zip
-
+    
