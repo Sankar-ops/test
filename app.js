@@ -1,8 +1,17 @@
-var express = require('express');
-var app = express();
-app.get('/', function (req, res) {
-  res.send('Hello World!');
+// Load the HTTP module
+const http = require('http');
+
+// Define the port to listen on
+const port = 3000;
+
+// Create a server that responds with "Hello, World!"
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello, World!\n');
 });
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+
+// Start the server and listen on the specified port
+server.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}/`);
 });
