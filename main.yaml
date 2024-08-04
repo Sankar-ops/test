@@ -1,0 +1,32 @@
+name: 'Terraform'
+
+on:
+  push:
+    branches: [ "main" ] ### this pipeline will be triggered if anyone pushed code into main branch 
+
+   workflow_dispatch: ### use this if you want to run pipeline manually
+
+jobs:
+  terraform: ## job
+    name: 'Terraform'  ## Name of job
+    runs-on: ubuntu-latest ## Runner, my project will be build on top of this
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: login
+        uses: Azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }} ## Created Azure Workload Identity Federation inside Service Account ( App Registrations)
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}  
+
+      - name: TF Init
+        run: terraform init
+      
+      - name: TF Plan
+        run: terraform plan
+
+      - name: TF Apply
+        run: terraform apply --auto-approve
