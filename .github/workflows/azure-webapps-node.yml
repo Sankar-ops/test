@@ -19,11 +19,11 @@ jobs:
     - name: npm build
       run: npm run build
 
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+    - name: Deploy to Azure App Service
+      uses: azure/webapps-deploy@v2
       with:
-        name: build-artifacts
-        path: dist/ 
+        app-name: integrationninjas
+        publish-profile: ${{ secrets.PROFILE }}
 
 
 
