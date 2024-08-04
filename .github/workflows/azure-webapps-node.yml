@@ -15,7 +15,7 @@ jobs:
         cache: 'npm'
 
     - name: Create random path for build output
-      run: mkdir -p /home/test
+      run: mkdir -p $GITHUB_WORKSPACE/home/test
       
     - name: npm install
       run: npm install
