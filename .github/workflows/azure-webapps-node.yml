@@ -12,11 +12,7 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-        cache: 'npm'
-
-    - name: Create random path for build output
-      run: mkdir -p $GITHUB_WORKSPACE/home/test
-      
+        
     - name: npm install
       run: npm install
 
@@ -27,7 +23,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: build-artifacts
-        path: $GITHUB_WORKSPACE/home/test/  
+        path: dist/ 
 
 
 
