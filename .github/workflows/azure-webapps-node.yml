@@ -22,8 +22,9 @@ jobs:
     - name: Deploy to Azure App Service
       uses: azure/webapps-deploy@v2
       with:
-        app-name: integrationninjas
+        app-name: Sankar-ops
         publish-profile: ${{ secrets.PROFILE }}
+      
 
 
 
